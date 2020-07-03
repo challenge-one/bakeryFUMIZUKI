@@ -1,24 +1,15 @@
-# README
+# bakeryFUMIZUKI
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+架空の店舗「ベーカリー文月」のECサイトです。
+ユーザサイトと管理者サイトに分かれており、ユーザサイトでは会員登録をした後、商品をカートに入れて注文手続きをすることができます。
+管理者サイトでは、ログイン後に注文ステータスと製作ステータスの変更、商品や会員の検索・管理を行うことができます。
 
-Things you may want to cover:
+## 動作環境
+Rails 5.2.4.2
+Ruby 2.7.1
 
-* Ruby version
+仮想環境上で動作します。
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 補足
+DMM WEBCAMPのチーム実装にて制作したRailsアプリ「NaganoCAKE」の復習として作りました。
