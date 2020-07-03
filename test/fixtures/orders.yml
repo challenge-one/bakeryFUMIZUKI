@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  addressee: MyString
+  post_code: MyString
+  send_to_address: MyString
+  how_to_pay: false
+  deliver_fee: 1
+  order_status: 1
+
+two:
+  customer_id: 1
+  addressee: MyString
+  post_code: MyString
+  send_to_address: MyString
+  how_to_pay: false
+  deliver_fee: 1
+  order_status: 1
