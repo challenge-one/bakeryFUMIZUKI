@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
 
+  get 'products/index'
+  get 'products/show'
+  get 'orders/confirm'
+  get 'orders/index'
+  get 'orders/new'
+  get 'orders/show'
+  get 'orders/thanks'
+  get 'order_items/index'
+  get 'homes/about'
+  get 'homes/top'
+  get 'genres/index'
+  get 'genres/show'
+  get 'customers/edit'
+  get 'customers/show'
+  get 'customers/withdraw'
+  get 'cart_items/index'
+  get 'addresses/edit'
+  get 'addresses/index'
 #rootパス
 root 'homes#top'
 
