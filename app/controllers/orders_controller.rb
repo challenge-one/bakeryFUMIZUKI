@@ -13,4 +13,7 @@ class OrdersController < ApplicationController
 
   def thanks
   end
+
+  def create
+  end
 end

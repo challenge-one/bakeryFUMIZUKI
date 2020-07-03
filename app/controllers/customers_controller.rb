@@ -7,4 +7,10 @@ class CustomersController < ApplicationController
 
   def withdraw
   end
+
+  def udpate
+  end
+
+  def withdraw_done
+  end
 end
