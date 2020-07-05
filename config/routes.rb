@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  #rootパス
+  root to: 'homes#top'
+
   namespace :admin do
     get 'searches/search'
   end
@@ -25,26 +28,6 @@ Rails.application.routes.draw do
     get 'customers/index'
     get 'customers/show'
   end
-  get 'products/index'
-  get 'products/show'
-  get 'orders/confirm'
-  get 'orders/index'
-  get 'orders/new'
-  get 'orders/show'
-  get 'orders/thanks'
-  get 'order_items/index'
-  get 'homes/about'
-  get 'homes/top'
-  get 'genres/index'
-  get 'genres/show'
-  get 'customers/edit'
-  get 'customers/show'
-  get 'customers/withdraw'
-  get 'cart_items/index'
-  get 'addresses/edit'
-  get 'addresses/index'
-#rootパス
-root 'homes#top'
 
 # 顧客用サイトのrouting
 devise_for :customers, controllers: {
