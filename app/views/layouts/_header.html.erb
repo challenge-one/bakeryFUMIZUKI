@@ -1,0 +1,53 @@
+<header class="container-fluid middle-blue-back">
+	<nav class="navbar navbar-expand-lg">
+		<!-- ロゴ画像。あとで差し替え。 -->
+		<div>
+			<%= link_to customer_top_path, style: 'color: #fcbf1e' do %>
+			<h1>LOGO</h1>
+			<% end %>
+		</div>
+
+		<!-- 画面幅が狭くなった時のみ出現するトグルボタン -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFumizuki" aria-controls="navbarFumizuki" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- 各種リンク。管理者ログイン時と顧客ログイン時、非ログイン時で表示切替。 -->
+		<div class="collapse navbar-collapse" id="navbarFumizuki">
+			<!-- 管理者 -->
+			<ul class="navbar-nav mr-auto w-75 nav-justified">
+				<% if admin_signed_in? %>
+					<div class="admin-message">管理者としてログインしています</div>
+					<li class="nav-item"><%= link_to '商品一覧', admins_products_path %></li>
+					<li class="nav-item"><%= link_to '会員一覧', admins_customers_path %></li>
+					<li class="nav-item"><%= link_to '注文履歴一覧', admins_orders_path %></li>
+					<li class="nav-item"><%= link_to 'ジャンル管理', admins_genres_path %></li>
+					<li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+				<!-- 顧客 -->
+				<% elsif customer_signed_in? %>
+					<li class="nav-item"><%= link_to 'About', customer_about_path %></li>
+					<li class="nav-item"><%= link_to 'マイページ', customer_path(current_customer.id) %></li>
+					<li class="nav-item"><%= link_to '商品一覧', products_path %></li>
+					<li class="nav-item"><%= link_to 'カート', cart_items_path %></li>
+					<li class="nav-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+				<!-- 非ログイン -->
+				<% else %>
+					<li class="nav-item"><%= link_to 'About', customer_about_path %></li>
+					<li class="nav-item"><%= link_to '商品一覧', products_path %></li>
+					<li class="nav-item"><%= link_to '新規登録', new_customer_registration_path %></li>
+					<li class="nav-item"><%= link_to 'ログイン', new_customer_session_path %></li>
+				<% end %>
+		  </ul>
+		  <!-- メッセージ(customer) or 検索窓(admin) -->
+		  <% if customer_signed_in? %>
+		    <p>ようこそ<%= current_customer.full_name %>さん！</p>
+		  <% else admin_signed_in? %>
+		    <!-- 検索フォームは仮。あとで機能するものを作って差し替え。 -->
+			<form class="form-inline my-2 my-lg-0">
+				<input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+				<button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+			</form>
+		  <% end %>
+		</div>
+		</nav>
+	</header>
