@@ -1,4 +1,4 @@
-class Admin::OrderItemsController < ApplicationController
+class Admins::OrderItemsController < ApplicationController
   def update
   end
 end
