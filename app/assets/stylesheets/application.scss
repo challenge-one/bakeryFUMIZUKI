@@ -16,6 +16,28 @@
 
 @import 'bootstrap';
 
+// initialize
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  color: #120136;
+}
+
+a{
+  text-decoration: none;
+}
+
+.clearfix::after{
+  content: "";
+  display:block;
+  clear:both;
+}
+
+.space {
+  padding: 50px 50px 30px;
+}
+
 .middle-blue-back {
   background-color: #035aa6
 }

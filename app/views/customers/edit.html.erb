@@ -1,1 +1,83 @@
 <div class="col"></div>
+
+<!-- before -->
+<div class="container edit">
+<h2>登録情報編集</h2>
+<%= render partial: 'layouts/flash', flash: flash %>
+<%= form_for(@customer,url: customer_path(@customer), method: :patch) do |f| %>
+    <div class="row">
+      <table border="0" width="700" >
+        <tr>
+          <th>名前</th>
+          <td>
+            <div class="form-group">
+            (姓)　
+            <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %>
+            (名)　
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td>
+            <div class="form-group">
+          (セイ)
+          <%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana" %>
+          (メイ)
+          <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td>
+            <div class="form-group">
+            <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>郵便番号(ハイフンなし)</th>
+          <td>
+            <div class="form-group">
+            <%= f.text_field :post_code, autofocus: true, autocomplete: "post_code" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>
+            <div class="form-group">
+            <%= f.text_field :address, autofocus: true, autocomplete: "address", size: 55 %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>電話番号(ハイフンなし)</th>
+          <td>
+            <div class="form-group">
+            <%= f.text_field :tel, autofocus: true, autocomplete: "tel" %>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>
+            <div class="btn-p">
+          <%= f.submit "編集内容を保存する", class:"btn btn-primary" %>
+          </div>
+        </th>
+        <td>
+          <div class="btn-d">
+          <%= link_to "退会する", customer_withdraw_path(@customer), class:"btn btn-danger"  %>
+          </div>
+        </td>
+      </tr>
+    </table>
+    </div>
+    </div>
+<% end %>
+

@@ -1,4 +1,92 @@
-<div class="col">
-  <div class="row"></div>
-  <div class="row"></div>
+<div class="col-lg-6 offset-lg-3 space">
+  <div class="container">
+    <h2>マイページ</h2>
+  </div>
+  <!-- お客様情報 -->
+  <div class="container space">
+    <div class="row">
+      <div class="col-lg-5"><h3>お客様情報</h3></div>
+      <div class="col-lg-2">
+        <%= link_to '編集', edit_customer_path, class: 'btn-sm btn-danger' %>
+      </div>
+      <div class="col-lg-4">
+        <%= link_to 'パスワード変更', new_customer_password_path, class: 'btn-sm btn-danger' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>氏名</h4>
+      </div>
+      <div class="col-lg-9">
+        <%= @customer.full_name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>カナ</h4>
+      </div>
+      <div class="col-lg-9">
+        <%= @customer.family_name_kana %> <%= @customer.first_name_kana %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>郵便番号</h4>
+      </div>
+      <div class="col-lg-9">
+        〒 <%= @customer.post_code %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>住所</h4>
+      </div>
+      <div class="col-lg-9">
+        <%= @customer.address %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>電話番号</h4>
+      </div>
+      <div class="col-lg-9">
+        <%= @customer.tel %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>E-mail</h4>
+      </div>
+      <div class="col-lg-9">
+        <%= @customer.email %>
+      </div>
+    </div>
+  </div>
+
+  <!-- その他のリンク -->
+  <div class="container space">
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>配送先</h4>
+      </div>
+      <div class="col-lg-9">
+        <%= link_to '一覧を見る', addresses_path, class: 'btn btn-danger' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <h4>注文履歴</h4>
+      </div>
+      <div class="col-lg-9">
+        <%= link_to '一覧を見る', orders_path, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
 </div>

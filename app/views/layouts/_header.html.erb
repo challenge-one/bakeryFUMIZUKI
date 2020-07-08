@@ -2,8 +2,8 @@
 	<nav class="navbar navbar-expand-lg">
 		<!-- ロゴ画像。あとで差し替え。 -->
 		<div>
-			<%= link_to customer_top_path, style: 'color: #fcbf1e' do %>
-			<h1>LOGO</h1>
+			<%= link_to customer_top_path do %>
+			<h1 style="color: #fcbf1e;">LOGO</h1>
 			<% end %>
 		</div>
 
@@ -40,7 +40,7 @@
 		  </ul>
 		  <!-- メッセージ(customer) or 検索窓(admin) -->
 		  <% if customer_signed_in? %>
-		    <p>ようこそ<%= current_customer.full_name %>さん！</p>
+		    <p style="color: #fcbf1e;">ようこそ<%= current_customer.full_name %>さん！</p>
 		  <% else admin_signed_in? %>
 		    <!-- 検索フォームは仮。あとで機能するものを作って差し替え。 -->
 			<form class="form-inline my-2 my-lg-0">

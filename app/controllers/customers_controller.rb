@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
 
   def udpate
     @customer = current_customer
-    if @customer.update(customer_params)  #更新出来たらマイページ、だめなら編集画面を再表示
+    if @customer.update(customer_params)
       redirect_to customer_path(@customer), success: 'お客様情報が更新されました！'
     else
       flash[:danger] = 'お客様の情報を更新出来ませんでした。空欄の箇所はありませんか？'
@@ -28,7 +28,6 @@ class CustomersController < ApplicationController
     @customer.update(is_active: false)
     reset_session
     redirect_to customer_top_path, info: 'ありがとうございました。またのご利用を心よりお待ちしております。'
-  end
   end
 
   private
