@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
   def show
   end
 
-  def udpate
+  def update
     @customer = current_customer
     if @customer.update(customer_params)
       redirect_to customer_path(@customer), success: 'お客様情報が更新されました！'

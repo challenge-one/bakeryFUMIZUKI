@@ -1,5 +1,5 @@
 <% flash.each do |type, msg| %>
-<div class="alert <%= flash_class_for(type) %>" role="alert">
+<div class="alert <%= flash_class_for(type) %> row" role="alert">
   <a class="close" data-dismiss="alert">×</a>
   <%= msg %>
 </div>
