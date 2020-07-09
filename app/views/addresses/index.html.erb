@@ -61,35 +61,3 @@
   </div>
 </div>
 
-
-<!-- before -->
-
-  <table class="table address">
-  <table border="1" width="700" height="100">
-    <thead>
-      <tr>
-        <th width="10%" bgcolor="#EEEEEE"> 郵便番号 </th>
-        <th width="45%" bgcolor="#EEEEEE"> 住所 </th>
-        <th width="20%" bgcolor="#EEEEEE"> 宛名 </th>
-        <th width="25%" bgcolor="#EEEEEE">  </th>
-      </tr>
-    </thead>
-  <% @addresses.each do |address| %>
-    <tbody>
-      <tr>
-        <td><%= address.post_code %></td>
-        <td><%= address.address %></td>
-        <td><%= address.addressee %></td>
-        <td>
-          <div class="btnform">
-            <%= link_to "編集する", edit_address_path(address), class:"btn btn-primary" %>
-            <%= link_to "削除する", address_path(address), class:"btn btn-danger", method: :delete %>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  <% end %>
-  </table>
-  </table>
-</div>
-
