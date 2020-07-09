@@ -1,0 +1,19 @@
+<div id="sidebar" class="col-lg-2">
+  <table class='table'>
+  <thead>
+    <tr>
+      <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% genres.each do |genre| %>
+    <tr>
+      <td><%= link_to  genre.name, genre_path(genre) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td><%= link_to "⇒ すべての商品を見る", products_path, class: 'dark-blue-letter' %></td>
+    </tr>
+  </tbody>
+</table>
+</div>

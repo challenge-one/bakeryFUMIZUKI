@@ -14,6 +14,13 @@
  *= require_self
  */
 
+// 配色
+// 濃青……#120136
+// 中青……#035aa6
+// 淡青……#40bad5
+// ワンポイント黄……#fcbf1e
+
+
 @import 'bootstrap';
 
 // initialize
@@ -34,17 +41,21 @@ a{
 }
 
 .middle-blue-back {
-  background-color: #035aa6
+  background-color: #035aa6;
+}
+
+.dark-blue-letter {
+  color: #120136;
 }
 
 .light_blue_letter {
- color: #40bad5
+ color: #40bad5;
 }
 
 .footer-message {
   line-height: 100px;
   text-align: center;
-  color: #fcbf1e
+  color: #fcbf1e;
 }
 
 // header
@@ -57,4 +68,9 @@ a{
 
 .nav-link {
   color: #40bad5;
+}
+
+//sidebar
+#sidebar {
+  background-color: #40bad5;
 }

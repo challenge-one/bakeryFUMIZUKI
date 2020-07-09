@@ -11,4 +11,10 @@ module ApplicationHelper
     when 'info' then 'alert-info'
     end
   end
+
+  def price_include_tax(price)
+    price = price * 1.08
+    "#{price.round}円"
+  end
+
 end

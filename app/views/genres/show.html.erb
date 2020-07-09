@@ -1,2 +1,31 @@
-<h1>Genres#show</h1>
-<p>Find me in app/views/genres/show.html.erb</p>
+<div class="col-lg-10">
+  <div class="container">
+  <h2><%= @genre.name %>一覧（全<%= @genre.products.count %>種）</h2>
+</div>
+  <div class="container">
+    <% @genre.products.each do |gp| %>
+      <%= render 'products/box', product: gp %>
+    <% end %>
+  </div>
+</div>
+<%= render 'genres/index', genres: @genres %>
+
+<!-- before -->
+<div class="container">
+<div class="row">
+  <div class="col-xs-2">
+    <%= render 'genres/index', genres: @genres %>
+  </div>
+  <div class="col-xs-10">
+    <div class ="index_products row">
+    <h2><%= @genre.name %>一覧<%= @genre.products.count %>種</h2>
+    <% @genre.products.each do |product| %>
+    <% end %>
+    </div>
+  </div>
+  <div class="col-xs-4 col-xs-offset-4">
+        <%= paginate @products %>
+    </div>
+</div>
+</div>
+

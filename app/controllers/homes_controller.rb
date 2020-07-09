@@ -3,5 +3,6 @@ class HomesController < ApplicationController
   end
 
   def top
+    @genres = Genre.all
   end
 end

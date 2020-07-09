@@ -8,5 +8,5 @@ class Product < ApplicationRecord
 	validates :name, presence: true, length: {maximum:30,minimum:2}
 	validates :introduction, presence: true, length: {maximum:250,minimum:2}
 	validates :price, presence: true
-	validates :image, presence: true
+
 end
