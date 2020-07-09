@@ -1,2 +1,39 @@
-<h1>Addresses#edit</h1>
-<p>Find me in app/views/addresses/edit.html.erb</p>
+
+
+
+<!-- before -->
+<!-- 配送先編集画面 -->
+<div class="edit address container">
+  <%= render partial: 'layouts/flash', flash: flash %>
+  <h2>配送先編集</h2>
+  <!-- 編集フォーム -->
+  <%= form_for (@address) do |f| %>
+  <table border="0" width="700" >
+    <tr>
+      <th width="25%">郵便番号(ハイフンなし)</th>
+      <td>
+        <div class="form-group">
+      <%= f.text_field :post_code, autofocus:true %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td>
+      <div class="form-group">
+      <%= f.text_field :address, autofocus:true, size: 50 %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <th>宛名</th>
+    <td>
+      <div class="form-group">
+      <%= f.text_field :addressee, autofocus:true %>
+      </div>
+    </td>
+    <td><%= f.submit "編集する", class:"btn btn-primary" %></td>
+  </tr>
+  <% end %>
+  </table>
+</div>
