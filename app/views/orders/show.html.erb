@@ -1,2 +1,93 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="col-lg-10 offset-1 space">
+</div>
+
+
+
+<!-- before -->
+<div class="container show">
+<h2>注文履歴詳細</h2>
+<div class="row">
+<div class="col col-xs-6">
+<h3>注文情報</h3>
+<table>
+  <table border="1" width="500" height="200" >
+  <tbody>
+    <tr>
+      <th bgcolor="#EEEEEE">注文日</th>
+      <td><%= simple_time(@order.created_at) %></td>
+    </tr>
+    <tr>
+      <th bgcolor="#EEEEEE">配送先</th>
+      <td><%= @order.send_to_address %></td>
+    </tr>
+    <tr>
+      <th bgcolor="#EEEEEE">支払方法</th>
+      <td><%= how_to_pay(@order) %></td>
+    </tr>
+    <tr>
+      <th bgcolor="#EEEEEE">ステータス</th>
+      <td><%= order_status(@order) %></td>
+    </tr>
+  </tbody>
+  </table>
+</table>
+
+
+<h3>注文内容</h3>
+<table>
+  <table border="1" width="700" height="130" >
+  <thead>
+    <tr>
+      <th width="60%" bgcolor="#EEEEEE">商品</th>
+      <th width="15%" bgcolor="#EEEEEE">単価（税込）</th>
+      <th bgcolor="#EEEEEE">個数</th>
+      <th bgcolor="#EEEEEE">小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% sum = 0 %>
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.product.name %></td>
+      <td>
+        <% price_plus_tax = order_item.order_price.to_i * 1.08 %>
+        <%= price_plus_tax.to_i %>円</td>
+      <td><%= order_item.quantity %>個</td>
+      <td><%= sub_total = price_plus_tax.to_i * order_item.quantity %>円</td>
+      <% sum += sub_total %>
+    </tr>
+    <% end %>
+
+  </tbody>
+  </table>
+</table>
+</div>
+
+<div class="col col-xs-6">
+<h3>請求情報</h3>
+ <table>
+   <table border="1" width="300" height="130" >
+  <tbody>
+    <tr>
+      <th bgcolor="#EEEEEE">商品合計</th>
+      <td>
+        <%= total_price = sum %>円
+      </td>
+    </tr>
+    <tr>
+      <th bgcolor="#EEEEEE">配送料</th>
+      <td><%= @order.deliver_fee %>円</td>
+    </tr>
+    <tr>
+      <th bgcolor="#EEEEEE">ご請求額</th>
+      <td>
+        <% billing_amount = total_price.to_i + @order.deliver_fee.to_i %>
+        <%= billing_amount %>円
+      </td>
+    </tr>
+  </tbody>
+  </table>
+</table>
+</div>
+</div>
+</div>

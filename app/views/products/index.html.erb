@@ -1,2 +1,17 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="col-lg-10 space">
+  <div class="container">
+  <h2>
+    <span style="display: inline-block;">全商品一覧</span>
+    <span style="display: inline-block;">（<%= @products.count %>種）</span>
+  </h2>
+</div>
+  <div class="container">
+    <div class="row">
+    <% @products.each do |gp| %>
+      <%= render 'products/box', product: gp %>
+    <% end %>
+  </div>
+  </div>
+  <%= paginate @products %>
+</div>
+<%= render 'genres/index', genres: @genres %>

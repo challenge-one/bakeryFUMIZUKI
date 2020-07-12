@@ -1,2 +1,48 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<div class="col-lg-10 offset-1 space">
+</div>
+
+
+
+<!-- before -->
+<div class="order index container">
+<h2>注文履歴一覧</h2>
+<%= flash[:alert] %>
+
+<table class="table order-index">
+  <table border="1" align="center" width="1000" height="100">
+  <thead>
+    <tr height="50">
+      <th bgcolor="#EEEEEE">注文日</th>
+      <th bgcolor="#EEEEEE">配送先</th>
+      <th bgcolor="#EEEEEE">注文商品</th>
+      <th bgcolor="#EEEEEE">支払金額</th>
+      <th bgcolor="#EEEEEE">ステータス</th>
+      <th bgcolor="#EEEEEE">注文詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= simple_time(order.created_at) %></td>
+      <td><%= order.post_code + " " + order.send_to_address + " " + order.addressee %></td>
+      <td>
+        <% sum = 0 %>
+        <% order.order_items.each do |order_item| %>
+          <%= order_item.product.name %><br>
+          <% price_plus_tax = order_item.order_price.to_i * 1.08 %>
+          <% sub_total = price_plus_tax.to_i * order_item.quantity %>
+          <% sum += sub_total.to_i %>
+        <% end %>
+      </td>
+      <td>
+        <%= sum += order.deliver_fee.to_i %>円
+      </td>
+      <td><%= order_status(order) %></td>
+      <td align = "center" valign ="middle" >
+        <%= link_to '表示する', order_path(order), class: "btn btn-sm btn-primary" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

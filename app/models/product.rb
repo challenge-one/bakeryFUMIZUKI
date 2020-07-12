@@ -9,4 +9,6 @@ class Product < ApplicationRecord
 	validates :introduction, presence: true, length: {maximum:250,minimum:2}
 	validates :price, presence: true
 
+  scope :is_active, -> { where(status: true) }
+
 end

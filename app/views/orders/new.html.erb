@@ -1,2 +1,75 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<div class="col-lg-10 offset-1 space">
+</div>
+
+
+
+<!-- before -->
+<div class="container new order">
+<h2>注文情報入力</h2>
+
+<%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |form| %>
+
+  <!-- 支払方法 -->
+  <div class="how_to_pay">
+    <h3><strong>支払方法</strong></h3>
+    <p>
+      <label><%= form.radio_button :how_to_pay, :true %>クレジットカード</label>
+    </p>
+    <p>
+      <label><%= form.radio_button :how_to_pay, :false %>銀行振込</label><br>
+    </p>
+  </div>
+
+  <!----------- お届け先 -------------->
+  <div class="send_to_address">
+
+    <h3><strong>お届け先</strong></h3>
+    <!-- 自身の住所 -->
+    <div class="add_mine">
+      <p>
+        <label><%= form.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
+      <%= @customer.post_code %>
+      <%= @customer.address %>
+      <%= @customer.family_name + @customer.first_name %>
+      </p>
+    </div>
+
+    <!-- 登録済住所 -->
+    <div class="add_select">
+      <p>
+        <label><%= form.radio_button :add, 2, style: "display: inline-block" %>登録住所から選択</label><br>
+        <%= form.collection_select :send_to_address, @customer.addresses, :id, :address %>
+      </p>
+    </div>
+
+    <!-- 新しい住所 -->
+    <div class="add_new">
+      <%= form.fields_for :new_add do |na| %>
+      <p>
+        <label><%= form.radio_button :add, 3, style: "display: inline-block" %>新しいお届け先</label><br>
+        <table border="0">
+          <tr>
+            <th>郵便番号(ハイフンなし)</th>
+            <td><%= na.text_field :post_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= na.text_field :address, size:50 %></td>
+          </tr>
+          <tr>
+            <th>宛名</th>
+            <td><%= na.text_field :addressee %></td>
+          </tr>
+        </table>
+      </p>
+      <% end %>
+    </div>
+  </div>
+  <!---------- お届け先ここまで ------------>
+
+  <!-- 確定ボタン -->
+  <div style="text-align: center;">
+    <%= form.submit "確認画面へ進む", class: "btn btn-primary"%>
+  </div>
+<% end %>
+</div>

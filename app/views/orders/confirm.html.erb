@@ -1,2 +1,94 @@
-<h1>Orders#confirm</h1>
-<p>Find me in app/views/orders/confirm.html.erb</p>
+<div class="col-lg-10 offset-1 space">
+</div>
+
+
+
+<!-- before -->
+<div class="container confirm">
+  <h2>注文情報確認</h2>
+
+  <%= form_with(model: @order, local: true) do |form| %>
+    <div class="col col-xs-8">
+      <table class="table order confirm">
+        <table border="1" width="700" height="100">
+      <thead>
+      <tr>
+      <th width="55%" height="50" bgcolor="#EEEEEE">商品名</th>
+      <th width="15%" bgcolor="#EEEEEE">単価（税込）</th>
+      <th width="15%" bgcolor="#EEEEEE">数量</th>
+      <th width="15%" bgcolor="#EEEEEE">小計</th>
+      </tr>
+      </thead>
+
+    <tbody>
+      <% sum = 0 %>
+      <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= attachment_image_tag(cart_item.product, :image, :fill, 60, 60, fallback: "no_image.jpg") %>
+          <%= cart_item.product.name %>
+        </td>
+        <td>
+          <% price_plus_tax = cart_item.product.price * 1.08 %>
+          <%= price_plus_tax.to_i %>
+        </td>
+        <td><%= cart_item.quantity %></td>
+        <td>
+          <% sub_total = price_plus_tax * cart_item.quantity.to_i %>
+          <%= sub_total.to_i %>
+        </td>
+      </tr>
+      <% sum += sub_total %>
+      <% end %>
+    </tbody>
+        </table>
+      </table>
+    </div>
+
+  <div class="col col-xs-4">
+    <table class="order price">
+      <table border="1" width="300" height="180">
+      <tbody><br>
+      <tr>
+        <td  width="50%" bgcolor="#EEEEEE">送料</td>
+        <td><%= @order.deliver_fee %>円</td>
+      </tr>
+      <tr>
+        <td bgcolor="#EEEEEE">商品合計</td>
+        <td><%= sum.to_i %>円</td>
+      </tr>
+      <tr>
+        <td bgcolor="#EEEEEE">請求金額</td>
+        <td>
+          <% billling_amount = sum + @order.deliver_fee.to_i %>
+        <%= billling_amount.to_i %>円
+        </td>
+      </tr>
+      </tbody>
+      </table>
+    </table>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-xs-8">
+        <h3>支払方法</h3>
+      <%= how_to_pay(@order) %>
+      <h3>お届け先</h3>
+      <%= @order.post_code %>
+      <%= @order.send_to_address %>
+      <%= @order.addressee %>
+
+      <%= form.hidden_field :customer_id, :value => current_customer.id %>
+      <%= form.hidden_field :post_code, :value => "#{@order.post_code}" %>
+      <%= form.hidden_field :send_to_address, :value => "#{@order.send_to_address}" %>
+      <%= form.hidden_field :addressee, :value => "#{@order.addressee}" %>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <%= form.submit "購入を確定する", class: "btn btn-success btn-lg col-xs-3" %>
+  </div>
+  <% end %>
+</div>
