@@ -5,17 +5,17 @@
   <!-- お客様情報 -->
   <div class="container space">
     <div class="row">
-      <div class="col-lg-5"><h3>お客様情報</h3></div>
-      <div class="col-lg-2">
+      <div class="col-lg-5 space-sm"><h3>お客様情報</h3></div>
+      <div class="col-lg-2 space-sm">
         <%= link_to '編集', edit_customer_path, class: 'btn-sm btn-danger' %>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 space-sm">
         <%= link_to 'パスワード変更', new_customer_password_path, class: 'btn-sm btn-danger' %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>氏名</h4>
       </div>
       <div class="col-lg-9">
@@ -24,7 +24,7 @@
     </div>
 
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>カナ</h4>
       </div>
       <div class="col-lg-9">
@@ -33,37 +33,37 @@
     </div>
 
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>郵便番号</h4>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 space-sm">
         〒 <%= @customer.post_code %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>住所</h4>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 space-sm">
         <%= @customer.address %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>電話番号</h4>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 space-sm">
         <%= @customer.tel %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>Eメール</h4>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 space-sm">
         <%= @customer.email %>
       </div>
     </div>
@@ -72,19 +72,19 @@
   <!-- その他のリンク -->
   <div class="container space">
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>配送先</h4>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 space-sm">
         <%= link_to '一覧を見る', addresses_path, class: 'btn btn-danger' %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 space-sm">
         <h4>注文履歴</h4>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 space-sm">
         <%= link_to '一覧を見る', orders_path, class: 'btn btn-danger' %>
       </div>
     </div>

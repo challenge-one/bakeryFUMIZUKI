@@ -7,10 +7,10 @@
     <%= form_with(model: @customer, local: true, class: 'container') do |f| %>
 
     <div class='form-group row'>
-      <div class='col-lg-4'>
+      <div class='col-lg-4 space-sm'>
         <h5><%= f.label :名前 %></h5>
       </div>
-      <div class='col-lg-8'>
+      <div class='col-lg-8 space-sm'>
         <span style='display: inline-block;'>
           (姓)<%= f.text_field :family_name, class: 'form-control' %>
         </span>
@@ -21,10 +21,10 @@
     </div>
 
     <div class='form-group row'>
-      <div class='col-lg-4'>
+      <div class='col-lg-4 space-sm'>
         <h5><%= f.label :フリガナ %></h5>
       </div>
-      <div class='col-lg-8'>
+      <div class='col-lg-8 space-sm'>
         <span style='display: inline-block;'>
           (セイ)<%= f.text_field :family_name_kana, class: 'form-control' %>
         </span>
@@ -35,44 +35,48 @@
     </div>
 
     <div class='form-group row'>
-      <div class='col-lg-4'>
+      <div class='col-lg-4 space-sm'>
         <h5><%= f.label :Eメール %></h5>
       </div>
-      <div class='col-lg-8'>
+      <div class='col-lg-8 space-sm'>
         <%= f.text_field :email, class: 'form-control' %>
       </div>
     </div>
 
     <div class='form-group row'>
-      <div class='col-lg-4'>
+      <div class='col-lg-4 space-sm'>
         <h5><%= f.label :郵便番号（ハイフンなし） %></h5>
       </div>
-      <div class='col-lg-8'>
+      <div class='col-lg-8 space-sm'>
         <%= f.text_field :post_code, class: 'form-control' %>
       </div>
     </div>
 
     <div class='form-group row'>
-      <div class='col-lg-4'>
+      <div class='col-lg-4 space-sm'>
         <h5><%= f.label :住所 %></h5>
       </div>
-      <div class='col-lg-8'>
+      <div class='col-lg-8 space-sm'>
         <%= f.text_field :address, class: 'form-control' %>
       </div>
     </div>
 
     <div class='form-group row'>
-      <div class='col-lg-4'>
+      <div class='col-lg-4 space-sm'>
         <h5><%= f.label :電話番号（ハイフンなし） %></h5>
       </div>
-      <div class='col-lg-8'>
+      <div class='col-lg-8 space-sm'>
         <%= f.text_field :tel, class: 'form-control' %>
       </div>
     </div>
 
-    <div class="action w-25 offset-lg-9">
-      <%= f.submit '編集内容を保存する', class:'btn btn-danger' %>
-      <%= link_to '退会する', customer_withdraw_path(@customer), class:'btn btn-danger'  %>
+    <div class="action space-sm row">
+      <div class="col-lg-2 offset-lg-8">
+        <%= f.submit '編集内容を保存する', class:'btn btn-danger' %>
+      </div>
+      <div class="col-lg-2">
+        <%= link_to '退会する', customer_withdraw_path(@customer), class:'btn btn-danger'  %>
+      </div>
     </div>
     <% end %>
   </div>
