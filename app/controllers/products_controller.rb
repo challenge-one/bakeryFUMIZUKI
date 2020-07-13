@@ -5,18 +5,18 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @cart = @product.cart_items.build #モデルなのでbuildを使用
+    @cart = @product.cart_items.build
   end
 
   def index
-    # ジャンルが有効 かつ 商品ステータスが有効 な商品を数える
+    # ジャンルが有効 かつ 商品ステータスが有効 な商品を絞り込み
     @products = Product.includes(:genre).where(genres: {validity: true}).is_active.page(params[:page]).per(9)
   end
 
   private
 
   def set_genres
-    @genre = Genre.is_valid
+    @genres = Genre.is_valid
   end
 
   def product_params
