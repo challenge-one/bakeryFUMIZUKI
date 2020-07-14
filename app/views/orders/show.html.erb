@@ -1,4 +1,6 @@
 <div class="col-lg-10 offset-1 space">
+  <div class="row"></div>
+  <div class="row"></div>
 </div>
 
 
@@ -50,8 +52,7 @@
     <tr>
       <td><%= order_item.product.name %></td>
       <td>
-        <% price_plus_tax = order_item.order_price.to_i * 1.08 %>
-        <%= price_plus_tax.to_i %>円</td>
+        <%= price_include_tax(order_item.order_price) %>円</td>
       <td><%= order_item.quantity %>個</td>
       <td><%= sub_total = price_plus_tax.to_i * order_item.quantity %>円</td>
       <% sum += sub_total %>

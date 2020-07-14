@@ -5,142 +5,103 @@
 
   <%= form_with(model: @order, local: true) do |f| %>
 
-  <div class="row">
-    <div class="d-none d-lg-block">
-        <div class="col-lg-5"><h4>商品名</h4></div>
-        <div class="col-lg-2"><h4>単価（税込）</h4></div>
-        <div class="col-lg-2"><h4>数量</h4></div>
-        <div class="col-lg-2"><h4>小計</h4></div>
-    </div>
-  </div>
-
-  <div class="row">
-    <% sum_all = 0 %>
-    <% @cart_items.each do |cart_item| %>
-      <div class="col-lg-3">
-        <%= link_to product_path(cart_item.product) do %>
-        <%= attachment_image_tag(cart_item.product, :image, :fill, 100, 100, fallback: "no_img.jpg") %>
-        <% end %>
-      </div>
-      <div class="col-lg-2">
-        <%= link_to product_path(cart_item.product) do %>
-        <%= cart_item.product.name %>
-        <% end %>
-      </div>
-      <div class="col-lg-2">
-        <%= price_include_tax(cart_item.product.price) %>
-      </div>
-      <div class="col-lg-2">
-        <%= form_with model: cart_item, local: true do |f| %>
-        <%= f.number_field :quantity, value: cart_item.quantity, min:1, max:99  %>
-        <%= f.submit "変更", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-      <div class="col-lg-2">
-        <%= sum_product = price_include_tax(cart_item.product.price).to_i * cart_item.quantity %>円
-        <% sum_all += sum_product %>
-      </div>
-      <div class="col-lg-1">
-        <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger"%>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="row"></div>
-
-  <div class="row"></div>
-
-  <% end %>
-</div>
-
-
-
-<!-- before -->
-<div class="container confirm">
-  <h2>注文情報確認</h2>
-
-  <%= form_with(model: @order, local: true) do |form| %>
-    <div class="col col-xs-8">
-      <table class="table order confirm">
-        <table border="1" width="700" height="100">
-      <thead>
-      <tr>
-      <th width="55%" height="50" bgcolor="#EEEEEE">商品名</th>
-      <th width="15%" bgcolor="#EEEEEE">単価（税込）</th>
-      <th width="15%" bgcolor="#EEEEEE">数量</th>
-      <th width="15%" bgcolor="#EEEEEE">小計</th>
-      </tr>
-      </thead>
-
-    <tbody>
-      <% sum = 0 %>
-      <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td><%= attachment_image_tag(cart_item.product, :image, :fill, 60, 60, fallback: "no_img.jpg") %>
-          <%= cart_item.product.name %>
-        </td>
-        <td>
-          <% price_plus_tax = cart_item.product.price * 1.08 %>
-          <%= price_plus_tax.to_i %>
-        </td>
-        <td><%= cart_item.quantity %></td>
-        <td>
-          <% sub_total = price_plus_tax * cart_item.quantity.to_i %>
-          <%= sub_total.to_i %>
-        </td>
-      </tr>
-      <% sum += sub_total %>
-      <% end %>
-    </tbody>
-        </table>
-      </table>
-    </div>
-
-  <div class="col col-xs-4">
-    <table class="order price">
-      <table border="1" width="300" height="180">
-      <tbody><br>
-      <tr>
-        <td  width="50%" bgcolor="#EEEEEE">送料</td>
-        <td><%= @order.deliver_fee %>円</td>
-      </tr>
-      <tr>
-        <td bgcolor="#EEEEEE">商品合計</td>
-        <td><%= sum.to_i %>円</td>
-      </tr>
-      <tr>
-        <td bgcolor="#EEEEEE">請求金額</td>
-        <td>
-          <% billling_amount = sum + @order.deliver_fee.to_i %>
-        <%= billling_amount.to_i %>円
-        </td>
-      </tr>
-      </tbody>
-      </table>
-    </table>
-  </div>
-
-
-  <div class="container">
+  <div class="d-none d-lg-block space">
     <div class="row">
-      <div class="col col-xs-8">
-        <h3>支払方法</h3>
-      <%= how_to_pay(@order) %>
+      <div class="col-lg-5"><h4>商品名</h4></div>
+      <div class="col-lg-2"><h4>単価（税込）</h4></div>
+      <div class="col-lg-2"><h4>数量</h4></div>
+      <div class="col-lg-2"><h4>小計</h4></div>
+    </div>
+  </div>
+
+  <% sum_all = 0 %>
+  <% @cart_items.each do |cart_item| %>
+  <div class="row space-sm">
+    <div class="col-lg-3">
+      <%= link_to product_path(cart_item.product) do %>
+      <%= attachment_image_tag(cart_item.product, :image, :fill, 100, 100, fallback: "no_img.jpg") %>
+      <% end %>
+    </div>
+    <div class="col-lg-2">
+      <%= link_to product_path(cart_item.product) do %>
+      <%= cart_item.product.name %>
+      <% end %>
+    </div>
+    <div class="col-lg-2">
+      <%= price_include_tax(cart_item.product.price) %>
+    </div>
+    <div class="col-lg-2">
+      <%= cart_item.quantity %>
+    </div>
+    <div class="col-lg-2">
+      <%= sum_product = price_include_tax(cart_item.product.price).to_i * cart_item.quantity %>円
+      <% sum_all += sum_product %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="row space">
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-lg-3">
+          <strong>送料</strong>
+        </div>
+        <div class="col-lg-3">
+          <%= @order.deliver_fee %>円
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <strong>商品合計</strong>
+        </div>
+        <div class="col-lg-3">
+          <%= sum_all.to_i %>円
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <strong>ご請求金額</strong>
+        </div>
+        <div class="col-lg-3">
+          <% billling_amount = sum_all + @order.deliver_fee.to_i %>
+          <%= billling_amount.to_i %>円
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row space-sm">
+    <div class="col-lg-2">
+      <h3>支払方法</h3>
+    </div>
+    <div class="col-lg-4">
+      <%= how_to_pay(@order.how_to_pay) %>
+    </div>
+  </div>
+
+  <div class="row space-sm">
+    <div class="col-lg-2">
       <h3>お届け先</h3>
+    </div>
+    <div class="col-lg-4">
       <%= @order.post_code %>
       <%= @order.send_to_address %>
       <%= @order.addressee %>
-
-      <%= form.hidden_field :customer_id, :value => current_customer.id %>
-      <%= form.hidden_field :post_code, :value => "#{@order.post_code}" %>
-      <%= form.hidden_field :send_to_address, :value => "#{@order.send_to_address}" %>
-      <%= form.hidden_field :addressee, :value => "#{@order.addressee}" %>
-      </div>
     </div>
   </div>
 
-  <div style="text-align: center;">
-    <%= form.submit "購入を確定する", class: "btn btn-success btn-lg col-xs-3" %>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  <%= f.hidden_field :post_code, :value => "#{@order.post_code}" %>
+  <%= f.hidden_field :send_to_address, :value => "#{@order.send_to_address}" %>
+  <%= f.hidden_field :addressee, :value => "#{@order.addressee}" %>
+</div>
+
+<div class="row space">
+  <div class="col-lg-2 offset-lg-5">
+    <%= f.submit "購入を確定する", class: "btn btn-danger btn-lg" %>
   </div>
-  <% end %>
+</div>
+
+
+<% end %>
 </div>
