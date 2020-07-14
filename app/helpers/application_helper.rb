@@ -17,7 +17,7 @@ module ApplicationHelper
     "#{price.floor}円"
   end
 
-  def how_to_pay how_to_pay
+  def how_to_pay(how_to_pay)
     case how_to_pay
       when true
         "クレジットカード"
@@ -26,7 +26,7 @@ module ApplicationHelper
     end
   end
 
-  def order_status order_status
+  def order_status(order_status)
     case order_status
       when 0
         "入金待ち"

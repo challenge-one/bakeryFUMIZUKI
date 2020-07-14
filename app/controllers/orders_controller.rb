@@ -59,8 +59,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     if @order.customer_id != current_customer.id
-      @orders = current_customer.orders
-      render :index
+      redirect_back(fallback_location: root_path)
       flash[:alert] = "アクセスに失敗しました。"
     end
   end
