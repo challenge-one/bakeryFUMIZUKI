@@ -19,7 +19,7 @@ resources :orders, only: [:new, :index, :create, :show]
   post 'orders/confirm' => 'orders#confirm', as: 'order_confirm'
   get 'orders/thanks' => 'orders#thanks', as: 'order_thanks'
 resources :products, only: [:index, :show]
-resources :order_items, only: [:index, :create, :new]
+resources :order_items, only: [:new]
 resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 resources :genres, only: [:show]
 
